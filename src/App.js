@@ -1,23 +1,28 @@
-import logo from './logo.svg';
-import './App.css';
-
+import React, { useState, useEffect } from 'react'
+import List from './List'
+import TodoForm from './TodoForm'
 function App() {
+
+  const [todos, setTodos] = useState(JSON.parse(localStorage.getItem('todos')) || [])
+  const [error, setError] = useState('')
+  useEffect(() => {
+    localStorage.setItem('todos', JSON.stringify(todos))
+  }, [todos]);
+
+  function addTodo(todo) {
+    setTodos([...todos, todo])
+  }
+
+  function removeTodo(todoIndex) {
+    setTodos(todos.filter((todos, index) => {
+      return index !== todoIndex
+    }))
+  }
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <TodoForm addTodo={addTodo} handleError={setError} />
+      {error && <p>{error}</p>}
+      <List todos={todos} removeTodo={removeTodo} />
     </div>
   );
 }
