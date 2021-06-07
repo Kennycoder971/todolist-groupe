@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import List from './List'
 import TodoForm from './TodoForm'
+import './global.css'
 function App() {
 
   const [todos, setTodos] = useState(JSON.parse(localStorage.getItem('todos')) || [])
@@ -19,7 +20,8 @@ function App() {
     }))
   }
   return (
-    <div>
+    <div className='container'>
+      <h1>Todo liste</h1>
       <TodoForm addTodo={addTodo} handleError={setError} />
       {error && <p>{error}</p>}
       <List todos={todos} removeTodo={removeTodo} />

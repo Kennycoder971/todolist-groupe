@@ -15,7 +15,7 @@ export default function TodoForm({ addTodo, handleError }) {
 
         }}>
             <input type="text" placeholder='Add todo' value={inputVal} onChange={e => setInputVal(e.target.value)} />
-            <button >Add </button>
+            <button className='btn' >Ajouter </button>
         </form>
     )
 }

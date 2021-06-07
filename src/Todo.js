@@ -4,7 +4,7 @@ export default function Todo({ title, removeTodo, todoIndex }) {
     return (
         <li>
             {title}&nbsp;&nbsp;
-            <button onClick={() => removeTodo(todoIndex)}>remove</button>
+            <button className='todo-btn' onClick={() => removeTodo(todoIndex)}>Effacer</button>
         </li>
     )
 }
